@@ -1,27 +1,58 @@
-import React from "react";
 import './index.scss';
 
-const Modal = ({open, setOpen, children }) => (
-  <div className={`overlay animated ${ open ? 'show' : ''}`}>
-        <div className="modal">
-          <svg onClick={() => setOpen(false)} height="200" viewBox="0 0 200 200" width="200">
-            <title />
-            <path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z" />
-          </svg>
-          {children}
-        </div>
+const questions = [
+  {
+    title: 'React - это ... ?',
+    variants: ['библиотека', 'фреймворк', 'приложение'],
+    correct: 0,
+  },
+  {
+    title: 'Компонент - это ... ',
+    variants: ['приложение', 'часть приложения или страницы', 'то, что я не знаю что такое'],
+    correct: 1,
+  },
+  {
+    title: 'Что такое JSX?',
+    variants: [
+      'Это простой HTML',
+      'Это функция',
+      'Это тот же HTML, но с возможностью выполнять JS-код',
+    ],
+    correct: 2,
+  },
+];
+
+function Result() {
+  return (
+    <div className="result">
+      <img src="https://cdn-icons-png.flaticon.com/512/2278/2278992.png" />
+      <h2>Вы отгадали 3 ответа из 10</h2>
+      <button>Попробовать снова</button>
+    </div>
+  );
+}
+
+function Game() {
+  return (
+    <>
+      <div className="progress">
+        <div style={{ width: '50%' }} className="progress__inner"></div>
       </div>
-);
+      <h1>Что такое useState?</h1>
+      <ul>
+        <li>Это функция для хранения данных компонента</li>
+        <li>Это глобальный стейт</li>
+        <li>Это когда на ты никому не нужен</li>
+      </ul>
+    </>
+  );
+}
 
 function App() {
-  const [open, setOpen] = React.useState(false);
-
   return (
     <div className="App">
-      <button onClick={() => setOpen(true)} className="open-modal-btn">✨ Открыть окно</button>
-      <Modal open={open} setOpen={setOpen}>
-        <img src="https://media2.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" />
-      </Modal>
+      <Game />
+      {/* <Result /> */}
     </div>
   );
 }
